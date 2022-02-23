@@ -18,7 +18,7 @@ router.get("/findUser/:_id", auth, validId, admin, user.findUser);
 //El admin sobra porque cualquier usuario se puede actualizar a él mismo
 router.put("/updateUser", auth, user.updateUser);
 router.put("/updateUserAdmin", auth, admin, user.updateUserAdmin);
-router.put("/deleteUser/:_id", auth, admin, user.deleteUser);
+router.put("/deleteUser/:_id", auth, admin, user.deleteUser);// se le agrego id a la ruta
 
 export default router;
  

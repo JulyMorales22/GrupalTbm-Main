@@ -99,6 +99,7 @@ const getUserRole = async (req, res) => {
   return res.status(200).send({ userRole });
 };
 
+//admin puede actualizar -- se realizan cambios en el condicional inicial, se cambia la funcion hassCompare por hassGenerate
 const updateUserAdmin = async (req, res) => {
   if (!req.body._id || !req.body.name || !req.body.email || !req.body.role)
     return res.status(400).send({ message: "Incomplete data" });
@@ -130,6 +131,7 @@ const updateUserAdmin = async (req, res) => {
     : res.status(200).send({ message: "User updated" });
 };
 
+//realizamos update para que un mismo usuario se actualice 
 const updateUser = async (req, res) => {
   console.log(req.user);
   if (!req.body._id ||!req.body.name || !req.body.email)
