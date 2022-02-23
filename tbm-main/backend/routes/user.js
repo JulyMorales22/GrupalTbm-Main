@@ -16,8 +16,9 @@ router.get("/getRole/:email", auth, user.getUserRole);
 router.get("/findUser/:_id", auth, validId, admin, user.findUser);
 //Se le puede agregar el userMidd.existingUser
 //El admin sobra porque cualquier usuario se puede actualizar a él mismo
-router.put("/updateUser", auth, admin, user.updateUser);
-router.put("/deleteUser", auth, admin, user.deleteUser);
+router.put("/updateUser", auth, user.updateUser);
+router.put("/updateUserAdmin", auth, admin, user.updateUserAdmin);
+router.put("/deleteUser/:_id", auth, admin, user.deleteUser);
 
 export default router;
  
