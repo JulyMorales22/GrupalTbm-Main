@@ -100,7 +100,7 @@ const getUserRole = async (req, res) => {
 
   userRole = userRole.role.name;
   return res.status(200).send({ userRole });
-};
+}; 
 
 const updateUser = async (req, res) => {
   if (!req.body.name || !req.body.email || !req.body.roleId)
@@ -109,6 +109,12 @@ const updateUser = async (req, res) => {
   let pass = "";
 
   if (req.body.password) {
+    //¿Quién es searchUser?
+    //Si entra aqui, no tiene por qué comparar, simplemente buscar y decir que pass es igual
+    //a la nueva contraseña encriptada
+    /**
+     * En caso contrario, si no llega, debe buscar al usuario en la bd, para que traiga la contraseña guardada
+     */
     const passHash = await bcrypt.hassCompare(
       req.body.password,
       searchUser.password
@@ -123,10 +129,12 @@ const updateUser = async (req, res) => {
     pass = searchUser.password;
   }
 
+  //Changes está bien
   let changes = await userService.isChanges(req.body, pass);
   if (changes)
     return res.status(400).send({ mesagge: "you didn't make any changes" });
 
+  //¿Qué sucede con el rol?
   const userUpdated = await User.findByIdAndUpdate(req.body._id, {
     name: req.body.name,
     password: pass,

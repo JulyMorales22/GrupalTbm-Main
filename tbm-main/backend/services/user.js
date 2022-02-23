@@ -7,7 +7,7 @@ const isChanges = async (user, password) => {
     name: user.name,
     email: user.email,
     password: password,
-    role: user.role,
+    role: user.role
   });
   return userData ? (changes = true) : changes;
 };
