@@ -15,6 +15,11 @@ import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
+import { UserService } from './services/user.service';
+import { RoleService } from './services/role.service';
+import { TaskService } from './services/task.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AuthGuard } from './guard/auth.guard';
 
 
 @NgModule({
@@ -38,7 +43,7 @@ import { UpdateRoleComponent } from './admin/update-role/update-role.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService, RoleService, TaskService, TokenInterceptorService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
