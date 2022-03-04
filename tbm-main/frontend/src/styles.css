@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.styleSnackBarkError{
+background-color: #992a2a;
+color: #f8f2f2;
+}
+
+.styleSnackBarkSuccesfull{
+    background-color: #32ce32;
+    color: #f8f2f2;
+}
