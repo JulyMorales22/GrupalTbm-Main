@@ -31,8 +31,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
-import {MatIconModule} from '@angular/material/icon';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatSnackBarModule,
     CdkAccordionModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     UserService,

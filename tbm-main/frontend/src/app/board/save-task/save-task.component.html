@@ -1,1 +1,38 @@
-
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title> Save Task </mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input
+            [(ngModel)]="registerData.name"
+            matInput
+            placeholder="Name Task"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            [(ngModel)]="registerData.description"
+            matInput
+            placeholder="Description"
+            required
+          />
+        </mat-form-field>
+        <!-- <mat-form-field>
+            <input
+              [(ngModel)]="registerData.imageUrl"
+              matInput
+              placeholder="Url imagen"
+              required
+            />
+          </mat-form-field> -->
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveTask()" class="button" mat-raised-button>
+        Save Task
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
