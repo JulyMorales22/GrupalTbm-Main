@@ -1,0 +1,27 @@
+.accordion_display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accordion_size {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding: 100px 16px 0px;
+  /* 1: todos los bordes, 2: 1 abajo y arriba y 2 derecha y izquiera , 3: 1 top, 2 izquiera y derecha, tercero buttom y cuatro: 1 top, 2 end, 3 abajo, 3 right*/
+}
+.spacer {
+  flex: 1 0 auto;
+}
+.btnTodo {
+  background-color: #f00c7e;
+  color: #ffffff;
+}
+.btnInProgress {
+  background-color: #034a4d;
+  color: #ffffff;
+}
+.btnDone {
+  background-color: #16e739;
+  color: #ffffff;
+}

@@ -1,33 +1,66 @@
-<p>List Task</p>
-
-<cdk-accordion class="example-accordion">
-  <cdk-accordion-item
-    *ngFor="let item of items; let index = index"
-    #accordionItem="cdkAccordionItem"
-    class="example-accordion-item"
-    role="button"
-    tabindex="0"
-    [attr.id]="'accordion-header-' + index"
-    [attr.aria-expanded]="accordionItem.expanded"
-    [attr.aria-controls]="'accordion-body-' + index"
-  >
-    <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-      {{ item }}
-      <span class="example-accordion-item-description">
-        Click to {{ accordionItem.expanded ? "close" : "open" }}
-      </span>
-    </div>
-    <div
-      class="example-accordion-item-body"
-      role="region"
-      [style.display]="accordionItem.expanded ? '' : 'none'"
-      [attr.id]="'accordion-body-' + index"
-      [attr.aria-labelledby]="'accordion-header-' + index"
-    >
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-      excepturi incidunt ipsum deleniti labore, tempore non nam doloribus
-      blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt
-      velit culpa?
-    </div>
-  </cdk-accordion-item>
-</cdk-accordion>
+<div class="accordion_display">
+  <div class="accordion_size">
+    <mat-accordion multi="true" *ngIf="taskData.length">
+      <mat-expansion-panel *ngFor="let task of taskData">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span> {{ task.name }}</span>
+            <span class="spacer"></span>
+            <button
+              class="btnTodo"
+              *ngIf="task.taskStatus == 'to-do'"
+              mat-raised-button
+            >
+              {{ task.taskStatus }}
+            </button>
+            <button
+              class="btnInProgress"
+              *ngIf="task.taskStatus == 'in-progress'"
+              mat-raised-button
+            >
+              {{ task.taskStatus }}
+            </button>
+            <button
+              class="btnDone"
+              *ngIf="task.taskStatus == 'done'"
+              mat-raised-button
+            >
+              {{ task.taskStatus }}
+            </button>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{ task.description }}
+        </mat-panel-description>
+        <mat-action-row>
+          <button
+            class="btnTodo"
+            mat-raised-button
+            *ngIf="task.taskStatus != 'to-do'"
+            (click)="updateTask(task, 'to-do')"
+          >
+            To-do
+          </button>
+          <button
+            class="btnInProgress"
+            mat-raised-button
+            *ngIf="task.taskStatus != 'in-progress'"
+            (click)="updateTask(task, 'in-progress')"
+          >
+            In-Progress
+          </button>
+          <button
+            class="btnDone"
+            mat-raised-button
+            *ngIf="task.taskStatus != 'done'"
+            (click)="updateTask(task, 'done')"
+          >
+            Done
+          </button>
+          <span class="spacer"></span>
+          <mat-icon>delete</mat-icon>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

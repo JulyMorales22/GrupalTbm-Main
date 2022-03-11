@@ -15,4 +15,9 @@ export class TaskService {
   saveTask(task: any) {
     return this._http.post<any>(this.env + 'task/saveTask', task); //metodo que se va a enviar, ruta y json
   }
+
+  listTask(){
+    return this._http.get<any>(this.env + 'task/listTask');
+  }
+  
 }

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router: Router,
-    private _snackBark: MatSnackBar
+    private _snackBar: MatSnackBar
   ) {
     this.registerData = {}; //un objeto vacio
   }
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     }
   }
   openSnackBarSuccesfull() {
-    this._snackBark.open(this.message, ' X ', {
+    this._snackBar.open(this.message, ' X ', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds,
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
     })
   }
   openSnackBarkError() {
-    this._snackBark.open(this.message, ' X ', {
+    this._snackBar.open(this.message, ' X ', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds,
