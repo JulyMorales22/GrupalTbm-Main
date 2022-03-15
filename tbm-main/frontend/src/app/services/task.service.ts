@@ -16,8 +16,15 @@ export class TaskService {
     return this._http.post<any>(this.env + 'task/saveTask', task); //metodo que se va a enviar, ruta y json
   }
 
-  listTask(){
+  listTask() {
     return this._http.get<any>(this.env + 'task/listTask');
   }
-  
+
+  updateTask(task: any) {
+    return this._http.put<any>(this.env + 'task/updateTask', task); //metodo que se va a enviar, ruta y json
+  }
+  deleteTask(task: any) {
+    //la , es para un body cuando es un parametro asi /+parametro
+    return this._http.delete<any>(this.env + 'task/deleteTask/' + task._id); //metodo que se va a enviar, ruta y json
+  }
 }

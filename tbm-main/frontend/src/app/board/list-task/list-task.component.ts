@@ -17,39 +17,68 @@ export class ListTaskComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2000;
-  constructor(private _taskService: TaskService, private _snackBar: MatSnackBar) {
+  constructor(
+    private _taskService: TaskService,
+    private _snackBar: MatSnackBar
+  ) {
     this.taskData = {};
   }
 
   ngOnInit(): void {
     this._taskService.listTask().subscribe({
-      next:(v)=>{
-        this.taskData = v.taskList //taskList como esta en el backend 
+      next: (v) => {
+        this.taskData = v.taskList; //taskList como esta en el backend
       },
-      error:(e) =>{
+      error: (e) => {
         this.message = e.error.message;
         this.openSnackBarkError();
-      }
-    })
+      },
+    });
   }
 
-  updateTask(task:any, status:string){}
-  deleteTask(task:any){}
+  updateTask(task: any, status: string) {
+    let tempStatus = task.taskStatus;
+    task.taskStatus = status;
+    this._taskService.updateTask(task).subscribe({
+      next: (v) => {},
+      error: (e) => {
+        task.taskStatus = tempStatus;
+        this.message = e.error.message;
+        this.openSnackBarkError();
+      },
+    });
+  }
+  deleteTask(task: any) {
+    this._taskService.deleteTask(task).subscribe({
+      next: (v) => {
+        let index = this.taskData.indexOf(task);
+        if (index > -1) {
+          this.taskData.splice(index, 1);
+          this.message = v.message;
+          this.openSnackBarSuccesfull();
+        }
+      },
+      error: (e) => {
+        e.message = e.error.message;
+        this.openSnackBarkError;
+      },
+    });
+  }
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, ' X ', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds,
-      panelClass: ['styleSnackBarkSuccesfull']
-    })
+      panelClass: ['styleSnackBarkSuccesfull'],
+    });
   }
   openSnackBarkError() {
     this._snackBar.open(this.message, ' X ', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.durationInSeconds,
-      panelClass: ['styleSnackBarkError']
-    })
+      panelClass: ['styleSnackBarkError'],
+    });
   }
 }
